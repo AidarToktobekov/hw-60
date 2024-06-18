@@ -1,6 +1,6 @@
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const FormMessage =()=>{
 
@@ -24,6 +24,8 @@ const FormMessage =()=>{
             method: 'post',
             body: data,
         })
+        setMessageAuthorValue('')
+        setMessageTextValue('')
     }
 
     
@@ -31,13 +33,13 @@ const FormMessage =()=>{
         <>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Author</Form.Label>
-                    <Form.Control type="name" placeholder="Author" onChange={messageAuthor}/>
+                    <Form.Control type="name" value={messageAuthorValue} placeholder="Author" onChange={messageAuthor}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Message</Form.Label>
-                    <Form.Control as="textarea" placeholder='Message' rows={3} onChange={messageText}/>
+                    <Form.Control as="textarea" placeholder='Message' rows={3} value={messageTextValue} onChange={messageText}/>
                 </Form.Group>
-                <Button className='mb-55' variant="primary" onClick={addNewMessage}>
+                <Button className='mb-5' variant="primary" onClick={addNewMessage}>
                     Submit
                 </Button>
         </>

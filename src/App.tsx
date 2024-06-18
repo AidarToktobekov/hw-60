@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import Accordion from 'react-bootstrap/Accordion';
@@ -11,13 +11,15 @@ const App=()=> {
   const url = 'http://146.185.154.90:8000/messages';
   
   const [messagesList, setMessagesList] = useState([])
-  
+  let messages;
   const getResponse = async()=> {
     const response = await fetch(url);
-    const messages = await response.json();
-    setMessagesList(messages);
+    if (response.ok) {      
+      messages = await response.json();
+      setMessagesList(messages.reverse());
+    }
   }
-  getResponse()
+  getResponse();
 
   return (
     <>
@@ -26,10 +28,9 @@ const App=()=> {
         <Accordion defaultActiveKey='4'>
           {messagesList.map((message:Message, index)=>{
             return(
-              <AddMessages key={message.id} id={String(index+1)} author={message.author} message={message.message} datetime={message.datetime}></AddMessages>
+              <AddMessages key={index} id={String(index+1)} author={message.author} message={message.message} datetime={message.datetime}></AddMessages>
             )
-            })
-          }
+          })}
         </Accordion>
       </div>
     </>
