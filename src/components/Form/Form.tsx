@@ -32,11 +32,11 @@ const FormMessage =()=>{
     return(
         <>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Author</Form.Label>
+                    <Form.Label className='fw-bold fs-4'>Author</Form.Label>
                     <Form.Control type="name" value={messageAuthorValue} placeholder="Author" onChange={messageAuthor}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Message</Form.Label>
+                    <Form.Label className='fw-bold fs-4'>Message</Form.Label>
                     <Form.Control as="textarea" placeholder='Message' rows={3} value={messageTextValue} onChange={messageText}/>
                 </Form.Group>
                 <Button className='mb-5' variant="primary" onClick={addNewMessage}>
